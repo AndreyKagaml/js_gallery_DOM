@@ -5,21 +5,22 @@ const largePicture = document.querySelector('.gallery__large-img');
 
 if (picturesSmall !== null) {
   picturesSmall.addEventListener('mouseover', (ev) => {
-    const element = ev.target.closest('.gallery__thumb');
+    const element = ev.target.closest('.list-item');
 
     element.style.border = '3px solid #E3DEDE';
     element.style.borderRadius = '5px';
   });
 
   picturesSmall.addEventListener('mouseout', (ev) => {
-    const element = ev.target.closest('.gallery__thumb');
+    const element = ev.target.closest('.list-item');
 
     element.style.border = '';
   });
 
   picturesSmall.addEventListener('click', (ev) => {
-    const element = ev.target.closest('.gallery__thumb');
-    const fileName = element.parentElement.getAttribute('href');
+    const element = ev.target.closest('.list-item');
+
+    const fileName = element.firstElementChild.getAttribute('href');
 
     ev.preventDefault();
 
