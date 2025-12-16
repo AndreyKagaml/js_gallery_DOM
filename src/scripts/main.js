@@ -1,27 +1,30 @@
 'use strict';
 
-const picturesSmall = document.querySelectorAll('.gallery__thumb');
+const picturesSmall = document.querySelector('.gallery__list');
 const largePicture = document.querySelector('.gallery__large-img');
 
 if (picturesSmall !== null) {
-  for (const element of picturesSmall) {
-    element.addEventListener('mouseover', () => {
-      element.style.border = '3px solid #E3DEDE';
-      element.style.borderRadius = '5px';
-    });
+  picturesSmall.addEventListener('mouseover', (ev) => {
+    const element = ev.target.closest('.gallery__thumb');
 
-    element.addEventListener('mouseout', () => {
-      element.style.border = '';
-    });
+    element.style.border = '3px solid #E3DEDE';
+    element.style.borderRadius = '5px';
+  });
 
-    element.addEventListener('click', (event) => {
-      const fileName = element.parentElement.getAttribute('href');
+  picturesSmall.addEventListener('mouseout', (ev) => {
+    const element = ev.target.closest('.gallery__thumb');
 
-      event.preventDefault();
+    element.style.border = '';
+  });
 
-      if (largePicture) {
-        largePicture.setAttribute('src', fileName);
-      }
-    });
-  }
+  picturesSmall.addEventListener('click', (ev) => {
+    const element = ev.target.closest('.gallery__thumb');
+    const fileName = element.parentElement.getAttribute('href');
+
+    ev.preventDefault();
+
+    if (largePicture) {
+      largePicture.setAttribute('src', fileName);
+    }
+  });
 }
